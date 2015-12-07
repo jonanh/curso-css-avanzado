@@ -95,7 +95,8 @@ module.exports = (grunt) ->
 
         markdown:
             compile:
-                options: {}
+                options:
+                    template: 'templates/_markdown.html'
                 files: [{
                     expand: true,
                     cwd: 'slides/',
