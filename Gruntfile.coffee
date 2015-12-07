@@ -1,7 +1,8 @@
-# Generated on 2014-06-07 using generator-reveal 0.3.7
+# Generated on 2015-11-24 using generator-reveal 0.5.4
 module.exports = (grunt) ->
 
     grunt.initConfig
+        pkg: grunt.file.readJSON 'package.json'
 
         watch:
 
@@ -10,10 +11,10 @@ module.exports = (grunt) ->
                     livereload: true
                 files: [
                     'index.html'
-                    'slides/*.md'
-                    'slides/*.html'
+                    'slides/{,*/}*.{md,html}'
                     'js/*.js'
                     'css/*.css'
+                    'resources/**'
                 ]
 
             index:
@@ -59,6 +60,8 @@ module.exports = (grunt) ->
             options:
                 indentation:
                     value: 4
+                max_line_length:
+                    level: 'ignore'
 
             all: ['Gruntfile.coffee']
 
@@ -80,6 +83,7 @@ module.exports = (grunt) ->
                         'bower_components/**'
                         'js/**'
                         'css/*.css'
+                        'resources/**'
                     ]
                     dest: 'dist/'
                 },{
@@ -99,7 +103,7 @@ module.exports = (grunt) ->
                 message: 'Built from %sourceCommit% on branch %sourceBranch%'
             pages:
                 options:
-                    remote: 'git@github.com:irontec/curso-css-avanzado.git'
+                    remote: '<%= pkg.repository.url %>'
                     branch: 'gh-pages'
         
 
@@ -129,7 +133,7 @@ module.exports = (grunt) ->
             'jshint'
         ]
 
-    grunt.registerTask 'server',
+    grunt.registerTask 'serve',
         'Run presentation locally and start watch process (living document).', [
             'buildIndex'
             'sass'
@@ -156,5 +160,5 @@ module.exports = (grunt) ->
     # Define default task.
     grunt.registerTask 'default', [
         'test'
-        'server'
+        'serve'
     ]
