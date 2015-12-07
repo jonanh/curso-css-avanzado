@@ -1,0 +1,5 @@
+- 
+    - ```Margin``` 
+    - Espacio exterior
+    - Espacio hasta el objeto anterior o posterior.
+    - El valor ```auto``` para el margen derecho e izquierdo repartirá el espacio disponible entre ambos centrando el objeto
